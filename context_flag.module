@@ -4,6 +4,10 @@
  * Main module file for the context_flag module.
  */
 
+// Load the global ContextFlagBase class (helps avoid issues with migrating
+// from older versions of the module, specifically 1.2-1.3).
+module_load_include('inc', 'context_flag', 'conditions/context_flag_condition.base');
+
 /**
  * Implements hook_context_plugins().
  */
