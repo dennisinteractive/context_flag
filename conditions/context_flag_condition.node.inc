@@ -39,7 +39,7 @@ class ContextFlagNodeActive extends ContextFlagBase {
         foreach ($this->get_contexts() as $context) {
           $options = $this->fetch_from_context($context, 'options');
           $require_all = isset($options[$this->contextSettingName]) ? $options[$this->contextSettingName] : FALSE;
-          $arr_trigger_flags = $context->conditions[$this->contextSettingName]['values'];
+          $arr_trigger_flags = $this->fetch_from_context($context, 'values');
           if (!$require_all) {
             foreach ($arr_trigger_flags as $flag_name) {
               if (isset($arr_flags[$flag_name]) && $arr_flags[$flag_name]) {
