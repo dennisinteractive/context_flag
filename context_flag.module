@@ -4,6 +4,13 @@
  * Main module file for the context_flag module.
  */
 
+// Issue 2629398 (https://www.drupal.org/node/2629398):
+// If the parent context_condition class from the Context module doesn't
+// exist, load it. 
+if (!class_exists('context_condition')){
+  module_load_include('inc', 'context', 'plugins/context_condition');
+}
+
 // Load the global ContextFlagBase class (helps avoid issues with migrating
 // from older versions of the module, specifically 1.2-1.3).
 module_load_include('inc', 'context_flag', 'conditions/context_flag_condition.base');
