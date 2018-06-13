@@ -29,6 +29,12 @@ class ContextFlagTaxonomyPageActive extends ContextFlagBase {
   public function contextFlagConditionCheck() {
     if ($this->condition_used()) {
       $obj_page = menu_get_object('taxonomy_term', 2);
+      if (!isset($obj_page->tid)) {
+        // Try to get it without menu_get_object().
+        if (arg(0) == 'taxonomy' && arg(1) == 'term' && arg(2)) {
+          $obj_page = taxonomy_term_load(arg(2));
+        }
+      }
       if (!empty($obj_page->tid)) {
         $flags = $this->getFlagsForType();
         $arr_flags = array();
